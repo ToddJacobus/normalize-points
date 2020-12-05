@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+
+# docker-compose run --rm app sh -c "python -m unittest"
