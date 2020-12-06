@@ -4,24 +4,13 @@ from src.normalizers.normalize_coordinates import normalize_point
 from src.validators.validate_coordinates import coordinates_are_valid
 
 class NormalizerTests(TestCase):
-    def test_valid_points(self):
-        sample_points = {
-            "point_A": (190, 240),
-            "point_B": (-210, 120),
-            "point_C": (720, -10),
-            "point_D": (-750, 0),
-            "point_E": (-890, -100),
-            "point_F": (920, 180),
-        }
+    """Tests for evaluating return values for normalization and validation
+    functions"""
 
-        for point, coords in sample_points.items():
-            normalized_point = normalize_point(coords)
-            self.assertTrue(
-                coordinates_are_valid(normalized_point)
-                )
-    
-    def test_correct_points(self):
-        sample_points = {
+    def setUp(self):
+        # "Raw" and normalized latitude and longitude values predetermined
+        # to be the correct result of normalization.
+        self.sample_points = {
             "point_A": {
                 "raw": (190, 240),
                 "norm": (-170, -60),
@@ -48,7 +37,20 @@ class NormalizerTests(TestCase):
                 },
         }
 
-        for point, coords in sample_points.items():
+    def test_valid_points(self):
+        """Test that each point is a valid, lat/lon pair"""
+
+        for coords in self.sample_points.values():
+            normalized_point = normalize_point(coords['raw'])
+            self.assertTrue(
+                    coordinates_are_valid(normalized_point)
+                )
+    
+    def test_correct_points(self):
+        """Test that the normalization function calculates the correct,
+        normalized values based on a collection of sample points"""
+
+        for coords in self.sample_points.values():
             self.assertEqual(
                 normalize_point(coords['raw']),
                 coords['norm']
