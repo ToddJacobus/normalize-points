@@ -8,7 +8,7 @@ There are two unit tests and each demonstrates the solution to the challenge.  T
 
 I have also included a Dockerfile and docker-compose.yml file which describes a very simple container.  Again, this is overkill for such a simple application, but this represents standard procedure for when I develop more complex applications.  By running the unit tests within the Docker container, you can see that the results of the normalization function match the desired output.
 
-The application uses only standard Python libraries and has no dependencies.  The `requirements.txt` files is there only to demonstrate how I manage and share dependencies for a given environment.
+The application uses only standard Python libraries and has no dependencies.  The `requirements.txt` file is there only to demonstrate how I manage and share dependencies for a given environment.
 
 # Usage
 
